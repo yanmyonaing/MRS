@@ -1,0 +1,97 @@
+<div class="dropdown-menu pull-right dropdown-menu-scale">
+  <a href ng-click="ShowChangeID()" class="dropdown-item">
+    <span>Change Login ID</span>
+  </a>
+  <a class="dropdown-item" ui-sref="app.page.profile">
+    <span>Change Password</span>
+  </a>  
+  <div class="dropdown-divider"></div>  
+  <a href ng-click="logout()" class="dropdown-item">Sign out</a>
+</div>
+
+  <!-- .modalChangePass -->
+<div id="modChangePass" class="modal  form-validation">
+  <div class="modal-dialog modal-content">
+    
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+      </div>
+      <form  name='frmChangePass' id='frmChangePass'>
+      <div class="modal-body text-center p-lg">
+        <div class="form-group row">
+              
+              <label class="col-sm-3 form-control-label">Current Password</label>
+              <div class="col-sm-9">
+                <input id='txtCurPass' type="password" class="form-control m-b" placeholder="Required" ng-model="obj.curpass" required >
+              </div>
+
+              <label class="col-sm-3 form-control-label">New Password</label>
+              <div class="col-sm-9">
+                <input id='txtNewPass' type="password" class="form-control m-b"  ng-model="obj.newpass" required >
+              </div>
+
+              <label class="col-sm-3 form-control-label">Confirm Password</label>
+              <div class="col-sm-9">
+                <input id='txtConfirmPass' type="password" class="form-control m-b"  ng-model="obj.confirmpass" required >
+              </div>          
+             
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn success p-x-md"  ng-click="ChangePassword()" >OK</button>
+        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Cancel</button>
+        
+    </div>
+      
+    </form><!-- /.modal-content -->
+    
+  </div>
+</div>
+<!-- / .modalChangePass -->
+
+<!-- .modalChangeID -->
+<div id="modChangeID" class="modal form-validation" data-backdrop="false">
+  <div class="modal-dialog modal-content">
+    
+      <div class="modal-header">
+        <h5 class="modal-title">Change Login ID</h5>
+      </div>
+      <form  name='frmChangeID' id='frmChangeID'>
+      <div class="modal-body text-center p-lg">
+        <div class="form-group row">
+              
+              <label class="col-sm-3 form-control-label">Login ID</label>
+              <div class="col-sm-9">
+                <input id='txtLoginID' type="text" class="form-control m-b" ng-model="login" required >
+              </div>                     
+             
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn success p-x-md"  ng-click="SaveChangeID()">OK</button>
+        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Cancel</button>
+        
+    </div>
+      
+    </form><!-- /.modal-content -->
+    
+  </div>
+</div>
+<!-- / .modalChangeID -->
+
+<script type="text/javascript">
+
+  $('#modChangePass').on('hidden.bs.modal', function(){
+    $(this).data('modal', null);
+    $('#frmChangePass')[0].reset();
+
+  });
+
+  $('#modChangeID').on('hidden.bs.modal', function(){
+    $(this).data('modal', null);
+    $('#frmChangeID')[0].reset();
+
+  });
+</script>
