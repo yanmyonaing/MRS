@@ -51,96 +51,149 @@
 <div id="m" class="modal  form-validation" data-backdrop="true">
     <div class="modal-dialog modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Result Detail</h5>
+            <div class="col-sm-6">
+               <h5 class="modal-title">
+                <img src="../assets/images/logo.png" alt="." style="max-width:120px;">
+                <p style="font-size:12px;color:grey;">center of better living</p>
+               </h5>
+            </div>
+            <div class="col-sm-6">
+                <p style="text-align:right;color:red;font-size:16px;"><b>Center of Living Clinic</b><p>
+
+                <p style="text-align:right;margin-top:-10px">No.24, Nawarat Condo, Samone Street, Near National Theatre, Dagon Tsp., Yangon Ph: +95-1 377878</p>
+
+            </div>
         </div>
         <form  name='frmModal' id='frmModal'  class="">
             <div class="modal-body text-center p-lg">
-                <div class="form-group row" style="text-align:left;margin-left:10px;margin-right:-70px;">
+                <div class="form-group row" style="text-align:left;border:1px solid grey;padding:20px;">
                     <div class="row">
-                        <label class="col-sm-3 form-control-label">Name</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.Name}}</p>
+                        <div class="col-sm-6">
+                            <p>Patient’s Name  -  {{ cblResult.patient.name }}</p>
+                            <p>Gender - {{ cblResult.patient.Gender }}</p>
+                            <p>DOB - {{ cblResult.patient.DOB }}</p>
+                            <p>NRC - {{ cblResult.patient.NRC}}</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <p>Reg: No -  {{ cblResult.patient.RegNo }}</p>
+                            <p>Sample No - {{obj.lab_result.sampleID}}</p>
+                            <p>Run Date - {{ obj.RunDate}}</p>
+                            <p>Ref By - {{obj.ResultString}}</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">RunDate</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.RunDate}}</p>
-                        </div>
+                <div class="form-group row" style="text-align:left;padding:30px;">
+                <report1 ng-if="obj.lab_result.reportType == 1">
+                    <div class="row" ng-if = "obj.Name">
+                        <h6 style="text-align:center;">{{obj.Name}}</h6>
+                        <br>
+                        <p style="text-align:center;"> {{obj.Value}} = {{obj.Units}}</p>
                     </div>
+                    <br>
 
 
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">ReportName</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.ResultString}}</p>
-                        </div>
-                    </div>
 
+                    <!--<div class="row" ng-if = "obj.RefRange">-->
+                    <!--<label class="col-sm-3 form-control-label">RefRange</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<p>{{obj.RefRange}}</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
 
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">RefRange</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.RefRange}}</p>
-                        </div>
-                    </div>
+                    <!--<div class="row" ng-if = "obj.ResultString">-->
+                    <!--<label class="col-sm-3 form-control-label">ResultString</label>-->
+                    <!--<div class="col-sm-9">-->
+                    <!--<p>{{obj.ResultString}}</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
 
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">ResultString</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.ResultString}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Value</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.Value}}</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
+                    <div class="row" ng-if = "obj.Low">
                         <label class="col-sm-3 form-control-label">Low</label>
                         <div class="col-sm-9">
                             <p>{{obj.Low}}</p>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" ng-if = "obj.High">
                         <label class="col-sm-3 form-control-label">High</label>
                         <div class="col-sm-9">
-                            <p>{{obj.Hight}}</p>
+                            <p>{{obj.High}}</p>
                         </div>
                     </div>
 
 
-                    <div class="row">
+
+                    <div class="row" ng-if = "obj.Units">
                         <label class="col-sm-3 form-control-label">Units</label>
                         <div class="col-sm-9">
                             <p>{{obj.Units}}</p>
                         </div>
                     </div>
+                    <!--<hr>-->
+                    <!--<div class="row">-->
+                    <!--<h5 class="modal-title">Result File</h5>-->
+                    <!--</div>-->
                     <hr>
-                    <div class="row">
-                        <h5 class="modal-title">Result File</h5>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">File</label>
-                        <div class="col-sm-9">
-                            <p><a href="#" style="color:blue;">{{obj.fileresult.resultFile}}</a></p>
+                    <!--<div class="row" ng-if = "obj.fileresult.resultFile">-->
+                        <!--<label class="col-sm-3 form-control-label">File</label>-->
+                        <!--<div class="col-sm-9">-->
+                            <!--<p><a href="#" style="color:blue;">{{obj.fileresult.resultFile}}</a></p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row" ng-if = "obj.fileresult.fileName">-->
+                        <!--<label class="col-sm-3 form-control-label">File Name</label>-->
+                        <!--<div class="col-sm-9">-->
+                            <!--<p>{{obj.fileresult.fileName}}</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </report1>
+
+                    <report1 ng-if="obj.lab_result.reportType == 2">
+                        <div class="row" ng-if = "obj.Name">
+                            <h6 style="text-align:center;">{{obj.Name}}</h6>
+                            <br>
+                            <p style="text-align:center;"> {{obj.Value}} - {{obj.Units}} ( {{obj.ReportName}})</p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">File Name</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.fileresult.fileName}}</p>
+                        <br>
+
+
+                        <div class="row" ng-if = "obj.Low">
+                            <label class="col-sm-3 form-control-label">Low</label>
+                            <div class="col-sm-9">
+                                <p>{{obj.Low}}</p>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="row" ng-if = "obj.High">
+                            <label class="col-sm-3 form-control-label">High</label>
+                            <div class="col-sm-9">
+                                <p>{{obj.High}}</p>
+                            </div>
+                        </div>
+
+                        <!--<hr>-->
+                        <!--<div class="row">-->
+                        <!--<h5 class="modal-title">Result File</h5>-->
+                        <!--</div>-->
+                        <hr>
+                        <!--<div class="row" ng-if = "obj.fileresult.resultFile">-->
+                            <!--<label class="col-sm-3 form-control-label">File</label>-->
+                            <!--<div class="col-sm-9">-->
+                                <!--<p><a href="#" style="color:blue;">{{obj.fileresult.resultFile}}</a></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row" ng-if = "obj.fileresult.fileName">-->
+                            <!--<label class="col-sm-3 form-control-label">File Name</label>-->
+                            <!--<div class="col-sm-9">-->
+                                <!--<p>{{obj.fileresult.fileName}}</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </report1>
 
                 </div>
+
             </div>
 
             <div class="modal-footer">

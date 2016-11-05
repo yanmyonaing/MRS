@@ -12,7 +12,7 @@
                 <th st-sort='phones'>Gender</th>
                 <th st-sort='address'>Phone</th>
                 <th st-sort='address'>Address</th>
-                <th st-sort="created_at">Summary</th>
+                <th st-sort="created_at">Summary Create Date</th>
                 <th width="50">Details</th>
             </tr>
 
@@ -25,7 +25,7 @@
                 <td>{{cblSummary.patient.Gender}}</td>
                 <td>{{cblSummary.patient.Phone}}</td>
                 <td>{{cblSummary.patient.address}}</td>
-                <td>{{row.summary}}</td>
+                <td>{{ cblSummary.createDate}}</td>
 
                 <td><button type="button" class="btn btn-sm white"  ng-click="Detail(row.summaryPK)">
                     <i class="fa fa-edit"></i>
@@ -50,83 +50,40 @@
     <div class="modal-dialog modal-content">
 
         <div class="modal-header">
-            <h5 class="modal-title">Patient Detail</h5>
+            <div class="col-sm-6">
+                <h5 class="modal-title">
+                    <img src="../assets/images/logo.png" alt="." style="max-width:120px;">
+                    <p style="font-size:12px;color:grey;">center of better living</p>
+                </h5>
+            </div>
+            <div class="col-sm-6">
+                <p style="text-align:right;color:red;font-size:16px;"><b>Center of Living Clinic</b><p>
+
+                <p style="text-align:right;margin-top:-10px">No.24, Nawarat Condo, Samone Street, Near National Theatre, Dagon Tsp., Yangon Ph: +95-1 377878</p>
+
+            </div>
         </div>
         <form  name='frmModal' id='frmModal'  class="">
             <div class="modal-body text-center p-lg">
-                <div class="form-group row" style="text-align:left;margin-left:10px;margin-right:-70px;">
+                <div class="form-group row" style="text-align:left;border:1px solid grey;padding:20px;">
                     <div class="row">
-                        <label class="col-sm-3 form-control-label">Name</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.name}}</p>
+                        <div class="col-sm-6">
+                            <p>Patient’s Name  -  {{ obj.patient.name }}</p>
+                            <p>Gender - {{ obj.patient.Gender }}</p>
+                            <p>DOB - {{ obj.patient.DOB }}</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <p>Reg Date -  {{obj.patient.RegDate}}</p>
+                            <p>Phone -  {{obj.patient.Phone}}</p>
+                            <p>NRC - {{ obj.patient.NRC}}</p>
                         </div>
                     </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Registration Date</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.RegDate}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">NRC</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.NRC}}</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Gender</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.Gender}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Phone</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.Phone}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Address</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.address}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Summary</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.summary}}</p>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Father Name</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.FatherName}}</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label class="col-sm-3 form-control-label">Date Of Birth</label>
-                        <div class="col-sm-9">
-                            <p>{{obj.patient.DOB}}</p>
-                        </div>
-                    </div>
-
-
                 </div>
-            </div>
+                <div class="form-group row" style="text-align:left;padding:30px;margin-top:-27px;">
+                 <h5 style="text-align:center;font-size:19px;line-height:2;">Summary</h5>
+                 <p>{{ obj.summary }}</p>
+                </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Cancel</button>

@@ -27,6 +27,8 @@ class ResultController extends Controller
 
         $result->load('fileresult');
 
+        $result->load('labResult');
+
         return response()->json($result);
     }
 
