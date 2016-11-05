@@ -21,7 +21,9 @@
             "database"
         ],
         "psr-4": {
+            "Illuminate\\": "src/Illuminate/",
             "App\\": "app/"
+
         }
     },
     "autoload-dev": {

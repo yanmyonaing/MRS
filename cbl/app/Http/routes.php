@@ -33,9 +33,32 @@ Route::get('/getProfile/{id}', 'UserController@getProfile');
 
 Route::get('/patients', 'PatientController@index');
 
-Route::get('/', function () {
+Route::get('/patient/{id}', 'PatientController@details');
+Route::get('/summary/{id}', 'SummaryController@details');
+
+Route::get('/patientData/{userId}', 'UserController@getPatient');
+
+Route::get('/summaryData/{userId}', 'UserController@summaryData');
+
+
+Route::get('/labResultData/{userId}', 'UserController@labResultData');
+
+Route::get('/resultData/{userId}', 'UserController@resultData');
+
+Route::get('/fileResultData/{userId}', 'UserController@fileResultData');
+
+Route::get('/result', 'ResultController@index');
+
+Route::get('/result/{id}', 'ResultController@details');
+
+Route::post('/changePassword', 'UserController@changePassword');
+
+Route::post('/changeLogin', 'UserController@changeLoginID');
+
+Route::get('/home', function () {
     
 //Session::put('cur_user', 10);
 //return Session::get('cur_user');
-    return view('welcome');
+    $test = 'test';
+        return $test;
 });

@@ -44,7 +44,7 @@ CREATE TABLE `sys_log` (
   `LogInID` int(11) NOT NULL,
   `WhichFunction` varchar(50) DEFAULT NULL,
   `Description` varchar(500) DEFAULT NULL,
-  `LogDateTime` datetime(6) DEFAULT NULL,
+  `LogDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`tranID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5064 DEFAULT CHARSET=utf8;
 
@@ -4607,7 +4607,7 @@ DROP TABLE IF EXISTS `sysregnogen`;
 CREATE TABLE `sysregnogen` (
   `TableName` varchar(30) DEFAULT NULL,
   `LastRegNo` int(11) DEFAULT NULL,
-  `RegDate` datetime(6) DEFAULT NULL
+  `RegDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -4955,9 +4955,9 @@ CREATE TABLE `sysuser` (
   `passw` varchar(255) NOT NULL,
   `levelPK` int(11) NOT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `isDelete` tinyint(1) NOT NULL DEFAULT '0',
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`PK`),
@@ -5004,9 +5004,9 @@ CREATE TABLE `sysuserlevel` (
   `levelPK` int(11) NOT NULL,
   `UserLevel` varchar(50) DEFAULT NULL,
   `createdPK` int(11) DEFAULT NULL,
-  `createdDate` datetime(6) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
   `updatedPK` int(11) DEFAULT NULL,
-  `updatedDate` datetime(6) DEFAULT NULL,
+  `updatedDate` datetime DEFAULT NULL,
   `isDeleted` tinyint(1) NOT NULL DEFAULT '0',
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`levelPK`)
@@ -5365,9 +5365,9 @@ CREATE TABLE `tblbodysystem` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`systemPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5618,9 +5618,9 @@ CREATE TABLE `tblbranch` (
   `isDelete` tinyint(1) DEFAULT NULL,
   `isNew` tinyint(1) DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `isHeadQuarter` tinyint(1) DEFAULT NULL,
   `isCurrentBranch` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`branchPK`)
@@ -5678,9 +5678,9 @@ CREATE TABLE `tblchemname` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`chemNamePK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -5796,9 +5796,9 @@ CREATE TABLE `tblclinictimebydoctor` (
   `fromTime` datetime DEFAULT NULL,
   `toTime` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `isDelete` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`ctdPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -18027,9 +18027,9 @@ CREATE TABLE `tblcompany` (
   `isDelete` tinyint(1) DEFAULT NULL,
   `isNew` tinyint(1) DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`companyPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18068,9 +18068,9 @@ CREATE TABLE `tbldiagnosis` (
   `isActive` tinyint(1) DEFAULT '1',
   `isDelete` tinyint(1) DEFAULT '0',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`diagnosisPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18134,9 +18134,9 @@ CREATE TABLE `tbldoctor` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isActive` tinyint(1) DEFAULT '1',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `firstVisitFee` int(11) DEFAULT '0',
   `regularVisitFee` int(11) DEFAULT '0',
   PRIMARY KEY (`doctorPK`)
@@ -18174,9 +18174,9 @@ CREATE TABLE `tblexamdiagnosis` (
   `visitPK` int(11) NOT NULL,
   `diagnosisPK` int(11) NOT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`visitPK`,`diagnosisPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18243,9 +18243,9 @@ CREATE TABLE `tblexamination` (
   `cnsRemarks` longtext,
   `examComment` longtext,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`visitPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18309,9 +18309,9 @@ CREATE TABLE `tblexaminationtitle` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isActive` tinyint(1) DEFAULT '1',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`examinationPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18348,9 +18348,9 @@ CREATE TABLE `tblfrequency` (
   `frequency` varchar(50) DEFAULT NULL,
   `treatmentPK` int(11) DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `isActive` tinyint(1) DEFAULT '1',
   `isDelete` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`frequencyPK`)
@@ -18404,9 +18404,9 @@ CREATE TABLE `tblhistory` (
   `gynaecologicalHis_Other` longtext,
   `otherMedHistory` longtext,
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`visitPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18478,9 +18478,9 @@ CREATE TABLE `tblhistorytitle` (
   `isActive` tinyint(1) DEFAULT '1',
   `isDelete` tinyint(1) DEFAULT '0',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`historyTitlePK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -18498,9 +18498,9 @@ CREATE TABLE `tblinvestigation` (
   `labTestPK` int(11) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`investigationPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19372,9 +19372,9 @@ CREATE TABLE `tbllabcat` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`labCatPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19482,9 +19482,9 @@ CREATE TABLE `tbllaboratory` (
   `isActive` tinyint(1) DEFAULT '1',
   `isDelete` tinyint(1) DEFAULT '0',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`labPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19513,9 +19513,9 @@ CREATE TABLE `tbllabpackage` (
   `isActive` tinyint(1) DEFAULT '1',
   `isDelete` tinyint(1) DEFAULT '0',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`labPackPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19534,9 +19534,9 @@ CREATE TABLE `tbllabpackagedetail` (
   `labPackPK` int(11) NOT NULL,
   `labTestPK` int(11) NOT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`labPackPK`,`labTestPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -19708,9 +19708,9 @@ CREATE TABLE `tbllabsubtest` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `specimen` varchar(45) DEFAULT NULL,
   `information` varchar(45) DEFAULT NULL,
   `reference` varchar(45) DEFAULT NULL,
@@ -19865,9 +19865,9 @@ CREATE TABLE `tbllabtest` (
   `isNew` tinyint(1) DEFAULT '1',
   `isPackage` tinyint(1) DEFAULT '0',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `labCatPK` int(11) DEFAULT NULL,
   `labPK` int(11) DEFAULT NULL,
   `labTypePK` int(11) DEFAULT NULL,
@@ -20359,9 +20359,9 @@ CREATE TABLE `tbllabtestdetail` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`labTestDetailPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -20386,9 +20386,9 @@ CREATE TABLE `tbllabtestprice` (
   `discount` double DEFAULT NULL,
   `sellingPrice` double DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`labTestPricePK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -20872,9 +20872,9 @@ CREATE TABLE `tbllabtestrequest` (
   `visitPK` varchar(50) DEFAULT NULL,
   `labTestPK` varchar(50) DEFAULT NULL,
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `hasInvoiced` int(11) DEFAULT NULL,
   PRIMARY KEY (`labTestRequestPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -21025,9 +21025,9 @@ CREATE TABLE `tblmanufacturer` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`manuPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21048,9 +21048,9 @@ CREATE TABLE `tblmeddiagnosis` (
   `diagnosisPK` varchar(50) DEFAULT NULL,
   `visitPK` varchar(50) DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`medDiagnosisPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21108,9 +21108,9 @@ CREATE TABLE `tblmedicine` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `image` blob,
   `distributorPK` int(11) DEFAULT NULL,
   PRIMARY KEY (`medPK`)
@@ -21273,9 +21273,9 @@ CREATE TABLE `tblmedtype` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`medTypePK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21301,9 +21301,9 @@ CREATE TABLE `tblmedunit` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   PRIMARY KEY (`medUnitPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21331,9 +21331,9 @@ CREATE TABLE `tblpacklist` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `fromValue` int(11) DEFAULT '0',
   `toValue` int(11) DEFAULT '0',
   PRIMARY KEY (`packListPK`)
@@ -21357,9 +21357,9 @@ CREATE TABLE `tblpacklisttemp` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isNew` tinyint(1) DEFAULT '1',
   `updatePK` int(11) DEFAULT '0',
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `createPK` int(11) DEFAULT '0',
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `fromValue` int(11) DEFAULT '0',
   `toValue` int(11) DEFAULT '0',
   PRIMARY KEY (`packListPK`)
@@ -21655,9 +21655,9 @@ CREATE TABLE `tblposition` (
   `isDelete` tinyint(1) DEFAULT '0',
   `isActive` tinyint(1) DEFAULT '1',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`positionPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21764,9 +21764,9 @@ CREATE TABLE `tblsummary` (
   `isNew` tinyint(1) DEFAULT NULL,
   `isUpdate` tinyint(1) DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`summaryPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21784,9 +21784,9 @@ CREATE TABLE `tbltitle` (
   `isActive` tinyint(1) DEFAULT '1',
   `isDelete` tinyint(1) DEFAULT '0',
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`titlePK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21813,9 +21813,9 @@ CREATE TABLE `tbltreatment` (
   `duration` varchar(100) DEFAULT NULL,
   `treatmentRemarks` longtext,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `isDelete` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`treatmentPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -21865,9 +21865,9 @@ CREATE TABLE `tblvisit` (
   `bmi` decimal(10,2) DEFAULT NULL,
   `bloodType` varchar(10) DEFAULT NULL,
   `createPK` int(11) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` int(11) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   `remarks` longtext,
   `invoiceNo` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`visitPK`)
@@ -22131,13 +22131,13 @@ DROP TABLE IF EXISTS `tblvitalsign`;
 CREATE TABLE `tblvitalsign` (
   `vitalSignPK` int(11) NOT NULL,
   `visitPK` varchar(50) DEFAULT NULL,
-  `time` datetime(6) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
   `testName` varchar(100) DEFAULT NULL,
   `result` varchar(100) DEFAULT NULL,
   `createPK` varchar(50) DEFAULT NULL,
-  `createDate` datetime(6) DEFAULT NULL,
+  `createDate` datetime DEFAULT NULL,
   `updatePK` varchar(50) DEFAULT NULL,
-  `updateDate` datetime(6) DEFAULT NULL,
+  `updateDate` datetime DEFAULT NULL,
   PRIMARY KEY (`vitalSignPK`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

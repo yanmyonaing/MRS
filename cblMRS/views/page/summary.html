@@ -1,0 +1,152 @@
+<div class="padding">
+    <div class="box">
+        <div class="box-header">
+            <h2>Patient Summary</h2>
+        </div>
+        <table st-table="cblSummary" st-safe-src="cblSummary" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-sort="name">Name</th>
+                <th st-sort="description">Registration Date</th>
+                <th st-sort='type_of_business'>NRC</th>
+                <th st-sort='phones'>Gender</th>
+                <th st-sort='address'>Phone</th>
+                <th st-sort='address'>Address</th>
+                <th st-sort="created_at">Summary</th>
+                <th width="50">Details</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in cblSummary.patient.summary">
+                <td>{{cblSummary.patient.name}}</td>
+                <td>{{cblSummary.patient.RegDate}}</td>
+                <td>{{cblSummary.patient.NRC}}</td>
+                <td>{{cblSummary.patient.Gender}}</td>
+                <td>{{cblSummary.patient.Phone}}</td>
+                <td>{{cblSummary.patient.address}}</td>
+                <td>{{row.summary}}</td>
+
+                <td><button type="button" class="btn btn-sm white"  ng-click="Detail(row.summaryPK)">
+                    <i class="fa fa-edit"></i>
+                </button>
+
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7" class="m-a-0"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- .modal -->
+<div id="m" class="modal  form-validation" data-backdrop="true">
+    <div class="modal-dialog modal-content">
+
+        <div class="modal-header">
+            <h5 class="modal-title">Patient Detail</h5>
+        </div>
+        <form  name='frmModal' id='frmModal'  class="">
+            <div class="modal-body text-center p-lg">
+                <div class="form-group row" style="text-align:left;margin-left:10px;margin-right:-70px;">
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Name</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.name}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Registration Date</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.RegDate}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">NRC</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.NRC}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Gender</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.Gender}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Phone</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.Phone}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Address</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.address}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Summary</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.summary}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Father Name</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.FatherName}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Date Of Birth</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.patient.DOB}}</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Cancel</button>
+
+            </div>
+
+        </form><!-- /.modal-content -->
+
+    </div>
+</div>
+<!-- / .modal -->
+
+<script type="text/javascript">
+
+    $('#m').on('hidden.bs.modal', function(){
+        $(this).data('modal', null);
+        $('#frmModal')[0].reset();
+
+    });
+</script>
+
+
+

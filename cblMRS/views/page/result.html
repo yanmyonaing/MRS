@@ -1,0 +1,167 @@
+<div class="padding">
+    <div class="box">
+        <div class="box-header">
+            <h2>Patient Lab Result</h2>
+        </div>
+        <table st-table="cblResult" st-safe-src="cblSummary" class="table table-striped">
+            <thead>
+
+            <tr>
+                <th st-sort="name">Invoice No</th>
+                <th st-sort="description">Patient Name</th>
+                <th st-sort='phones'>Phone</th>
+                <th st-sort='phones'>Has Issue</th>
+                <th st-sort='address'>Result Issue Remark</th>
+                <th st-sort='address'>Phone Date Time</th>
+                <th st-sort='address'>Result Date Time</th>
+                <th st-sort='address'>Sample Date Time</th>
+                <th width="50">Check Result</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in cblResult.patient.labresult">
+                <td>{{row.invoiceNo}}</td>
+                <td>{{cblResult.patient.name}}</td>
+                <td><phone ng-if="row.hasPhoned">Yes</phone><phone ng-if="!row.hasPhoned">No</phone></td>
+                <td><issue ng-if="row.hasResultIssued">Yes</issue><issue ng-if="!row.hasResultIssued">No</issue></td>
+                <td>{{row.resultIssuedRemark}}</td>
+                <td>{{row.phoneDateTime}}</td>
+                <td>{{row.resultDateTime}}</td>
+                <td>{{row.sampleDateTime}}</td>
+                <td><button type="button" class="btn btn-sm white"  ng-click="Detail(row.sampleID)">
+                    <i class="fa fa-edit"></i>
+                </button>
+
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7" class="m-a-0"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- .modal -->
+<div id="m" class="modal  form-validation" data-backdrop="true">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Result Detail</h5>
+        </div>
+        <form  name='frmModal' id='frmModal'  class="">
+            <div class="modal-body text-center p-lg">
+                <div class="form-group row" style="text-align:left;margin-left:10px;margin-right:-70px;">
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Name</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.Name}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">RunDate</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.RunDate}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">ReportName</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.ResultString}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">RefRange</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.RefRange}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">ResultString</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.ResultString}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Value</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.Value}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Low</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.Low}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">High</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.Hight}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">Units</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.Units}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h5 class="modal-title">Result File</h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">File</label>
+                        <div class="col-sm-9">
+                            <p><a href="#" style="color:blue;">{{obj.fileresult.resultFile}}</a></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 form-control-label">File Name</label>
+                        <div class="col-sm-9">
+                            <p>{{obj.fileresult.fileName}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Cancel</button>
+
+            </div>
+
+        </form><!-- /.modal-content -->
+
+    </div>
+</div>
+<!-- / .modal -->
+
+<script type="text/javascript">
+
+    $('#m').on('hidden.bs.modal', function(){
+        $(this).data('modal', null);
+        $('#frmModal')[0].reset();
+
+    });
+</script>
+
+
+

@@ -1,86 +1,108 @@
 <ul class="nav" ui-nav>
   <li class="nav-header hidden-folded">
     <span class="text-xs text-muted">Medical Records</span>
-  </li>  
-  
+  </li>
+
   <li>
-    <a>
-      <span class="nav-caret text-muted">
-        <i class="fa fa-caret-down"></i>
-      </span>
-      <i class="nav-label"><b class="label label-sm no-bg">6</b></i>
+    <a ui-sref="app.page.summary">
       <span class="nav-icon">
-        <i class="material-icons">
-          event_note          
+         <i class="material-icons">
+          event_note
         </i>
       </span>
       <span class="nav-text">Summary</span>
     </a>
-    <ul class="nav-sub">
-      <li>
-        <a><span class="nav-text">Action</span></a>
-      </li>
-      <li>
-        <a><span class="nav-text">Another action</span></a>
-      </li>          
-    </ul>
   </li>
+
   <li>
-    <a>
-      <span class="nav-caret text-muted">
-        <i class="fa fa-caret-down"></i>
-      </span>
-      <i class="nav-label"><b class="label label-sm no-bg">6</b></i>
+    <a ui-sref="app.page.result">
       <span class="nav-icon">
-        <i class="material-icons">
+          <i class="material-icons">
           insert_drive_file
         </i>
       </span>
-      <span class="nav-text">Result</span>
+      <span class="nav-text">Lab Result</span>
     </a>
-    <ul class="nav-sub">
-      <li>
-        <a><span class="nav-text">Action</span></a>
-      </li>
-      <li>
-        <a><span class="nav-text">Another action</span></a>
-      </li>
-      
-    </ul>
   </li>
-  <li><div class="b-b b m-t-sm"></div></li>  
+
+  <!--<li>-->
+  <!--<a>-->
+  <!--<span class="nav-caret text-muted">-->
+  <!--<i class="fa fa-caret-down"></i>-->
+  <!--</span>-->
+  <!--<i class="nav-label"><b class="label label-sm no-bg">6</b></i>-->
+  <!--<span class="nav-icon">-->
+  <!--<i class="material-icons">-->
+  <!--event_note          -->
+  <!--</i>-->
+  <!--</span>-->
+  <!--<span class="nav-text">Summary</span>-->
+  <!--</a>-->
+  <!--<ul class="nav-sub">-->
+  <!--<li>-->
+  <!--<a><span class="nav-text">Action</span></a>-->
+  <!--</li>-->
+  <!--<li>-->
+  <!--<a><span class="nav-text">Another action</span></a>-->
+  <!--</li>-->
+  <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+  <!--<a>-->
+  <!--<span class="nav-caret text-muted">-->
+  <!--<i class="fa fa-caret-down"></i>-->
+  <!--</span>-->
+  <!--<i class="nav-label"><b class="label label-sm no-bg">6</b></i>-->
+  <!--<span class="nav-icon">-->
+  <!--<i class="material-icons">-->
+  <!--insert_drive_file-->
+  <!--</i>-->
+  <!--</span>-->
+  <!--<span class="nav-text">Result</span>-->
+  <!--</a>-->
+  <!--<ul class="nav-sub">-->
+  <!--<li>-->
+  <!--<a><span class="nav-text">Action</span></a>-->
+  <!--</li>-->
+  <!--<li>-->
+  <!--<a><span class="nav-text">Another action</span></a>-->
+  <!--</li>-->
+  <!---->
+  <!--</ul>-->
+  <!--</li>-->
+  <li><div class="b-b b m-t-sm"></div></li>
   <li class="nav-header hidden-folded">
     <span class="text-xs text-muted">Function</span>
-  </li>   
-  
+  </li>
+
   <li>
     <a>
       <span class="nav-icon">
         <i class="material-icons">
-          event_available                    
+          event_available
         </i>
       </span>
       <span class="nav-text">Appoitment</span>
     </a>
   </li>
-  <li><div class="b-b b m-t-sm"></div></li>  
+  <li><div class="b-b b m-t-sm"></div></li>
   <li class="nav-header hidden-folded">
     <span class="text-xs text-muted">Setting</span>
-  </li>   
-  
+  </li>
+
   <li>
-    <a>
+    <a ui-sref="app.page.changePassword">
       <span class="nav-icon">
         <i class="material-icons">
-          vpn_key 
-          <span ui-include="'../assets/images/i_7.svg'"></span>         
+          vpn_key
+          <span ui-include="'../assets/images/i_7.svg'"></span>
         </i>
       </span>
       <span class="nav-text">Change Password</span>
     </a>
   </li>
   <li>
-    <a>
+    <a ui-sref="app.page.changeLogin">
       <span class="nav-icon">
         <i class="material-icons">
           perm_identity
@@ -91,13 +113,13 @@
     </a>
   </li>
   <li><div class="b-b b m-t-sm"></div></li>
-    <li class="no-bg">
-      <a href ng-click="logout()">
+  <li class="no-bg">
+    <a href ng-click="logout()">
         <span class="nav-icon">
          <i class="material-icons">&#xe8ac;</i>
         </span>
-        <span class="nav-text">Logout</span>
-      </a>
-    </li>
+      <span class="nav-text">Logout</span>
+    </a>
+  </li>
 </ul>
 

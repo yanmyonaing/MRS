@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Users;
-use App\Medels\Patients;
+use App\Models\Patient;
+use App\Models\LabResult;
+use App\Models\Result;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
+
 //use JWTAuth;
 
 
@@ -25,55 +29,84 @@ class UserController extends Controller
     //	return response()->json($users);
     //}
 
-    public function checkvalid(Request $req){
-        $user = Users::select('PK','name','login')->where('login',$req->input('user_id'))->where('passw', MD5($req->input('password')))->get();         
+    public function checkvalid(Request $req)
+    {
 
+        $user = Users::select('PK','name','login')->where('login',$req->input('user_id'))->where('passw', MD5($req->input('password')))->get();
         if (count($user) > 0){
-           //session()->put('cur_user',$user[0]->PK); 
-           return $user;
-        }            
-        
-    }
-
-    public function logout(){
-
-        //if (session()->has('cur_user'))
-        
-
-            session()->forget('cur_user');
-        
-    
-    }
-
-    public function getProfile($id){
-
-        //dd(session()->has('cur_user'));
-        //if (session()->has('cur_user')){ 
-
-            $user = Users::with('Patients')->where('PK', $id)->get();
+            Session::put('cur_user',$user[0]->PK);
             return response()->json($user);
-        //}
+        }
     }
 
-    public function changeLoginID(Request $req){
+    public function logout()
+    {
+        //if (session()->has('cur_user'))
+            session()->forget('cur_user');
+    }
 
-        //if (session()->has('cur_user')){
+    public function getProfile($id)
+    {
+        //dd(session()->has('cur_user'));
+        $user = Users::findOrFail($id);
+        $user->load('patient');
+        return response()->json($user);
+    }
+
+    public function changeLoginID(Request $req)
+    {
+
             $user = Users::find($req->input('PK'));
             $user->login=$req->input('login');
             $user->save();
             $user = Users::where('PK',$req->input('PK'))->get();
-            return response()->json($users);
-        //}
+            return response()->json($user);
     }  
 
-    public function changePassword(Request $req){       
-
-        //if (session()->has('cur_user')){
+    public function changePassword(Request $req)
+    {
             $user = Users::find($req->input('PK'));
             $user->passw=MD5($req->input('password'));
             $user->save();
             $user = Users::where('PK',$req->input('PK'))->get();
-            return response()->json($users);
-        //}
-    }       
+            return response()->json($user);
+    }
+
+    public function patientData()
+    {
+        $userId = Session::get('cur_user');
+        $user = Users::find($userId);
+        $user->patient->get();
+        return response()->json($user);
+    }
+
+    public function summaryData($userId)
+    {
+        $user = Users::find($userId);
+        $user->load('patient.summary')->get();
+
+        return response()->json($user);
+    }
+
+    public function labResultData($userId)
+    {
+        $user = Users::find($userId);
+        $user->load('patient.labResult');
+        return response()->json($user);
+    }
+
+    public function resultData($userId)
+    {
+        $user = Users::find($userId);
+        $user->load('patient.labresult.result.fileresult');
+        return response()->json($user);
+    }
+
+    public function fileResultData($userId)
+    {
+        $user = Users::find($userId);
+        $user->load('patient.labResult.fileResult');
+        return response()->json($user);
+    }
+
 }

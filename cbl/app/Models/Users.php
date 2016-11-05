@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
 	protected $table='sysuser';
-	protected $hidden = array('passw');
     protected $primaryKey = 'PK';
+    public $timestamps = false;
 
-    public function Patients(){
-    	return $this->belongsTo('App\Models\Patients', 'PK', 'userPK');
+    public function patient(){
+    	return $this->hasOne('App\Models\Patient', 'userPK', 'PK');
     }
+    
 }

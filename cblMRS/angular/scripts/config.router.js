@@ -430,11 +430,6 @@
             url: '/page',
             template: '<div ui-view></div>'
           })
-            .state('app.page.profile', {
-              url: '/profile',
-              templateUrl: '../views/page/profile.html',
-              data : { title: 'Profile' }
-            })
             .state('app.page.setting', {
               url: '/setting',
               templateUrl: '../views/page/setting.html',
@@ -468,8 +463,58 @@
             .state('app.page.blank', {
               url: '/blank',
               templateUrl: '../views/page/blank.html',
-              data : { title: 'Blank' }
+              data : { title: 'Blank' },
+              controller:'summaryController',
+              resolve: load(['scripts/controllers/summaryController.js'])
             })
+            .state('app.page.summary', {
+              url: '/summary',
+              templateUrl: '../views/page/summary.html',
+              data : { title: 'Summary' },
+              controller:'summaryController',
+              resolve: load('scripts/controllers/summaryController.js')
+            })
+
+            .state('app.page.result', {
+              url: '/result',
+              templateUrl: '../views/page/result.html',
+              data : { title: 'Result' },
+              controller:'ResultController',
+              resolve: load('scripts/controllers/resultController.js')
+            })
+
+            .state('app.page.changePassword', {
+              url: '/changePassword',
+              templateUrl: '../views/page/changePassword.html',
+              data : { title: 'Change Password' },
+              controller:'UserController',
+              resolve: load('scripts/controllers/user_controller.js')
+            })
+
+            .state('app.page.changeLogin', {
+              url: '/changeLogin',
+              templateUrl: '../views/page/changeLogin.html',
+              data : { title: 'Change Login ID' },
+              controller:'UserController',
+              resolve: load('scripts/controllers/user_controller.js')
+            })
+
+            .state('app.page.fileResult', {
+              url: '/fileResult',
+              templateUrl: '../views/page/fileResult.html',
+              data : { title: 'File Result' },
+              controller:'ResultController',
+              resolve: load('scripts/controllers/fileResultcontroller.js')
+            })
+
+            .state('app.page.profile', {
+              url: '/profile',
+              templateUrl: '../views/page/profile.html',
+              data : { title: 'Profile' },
+              controller:'profileController',
+              resolve: load('scripts/controllers/profileController.js')
+            })
+
             .state('app.docs', {
               url: '/docs',
               templateUrl: '../views/page/docs.html',
@@ -493,6 +538,7 @@
 			  controller:'UserController',
 			  resolve: load('scripts/controllers/user_controller.js')
             })
+
             .state('access.signup', {
               url: '/signup',
               templateUrl: '../views/misc/signup.html'
@@ -504,8 +550,7 @@
             .state('access.lockme', {
               url: '/lockme',
               templateUrl: '../views/misc/lockme.html'
-            })
-          ;
+            });
 
         function load(srcs, callback) {
           return {
