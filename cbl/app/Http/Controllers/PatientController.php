@@ -12,8 +12,7 @@ class PatientController extends Controller
 {
      public function index(){
          //$user = JWTAuth::parseToken()->authenticate();
-     	$patients=Patient::with('users')->with('summary')->with('labResult')->get();
-
+     	$patients=Patient::with('users')->with('summary')->with('labResult')->get();    
          return response()->json($patients);
      }
     

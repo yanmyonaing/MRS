@@ -14,8 +14,11 @@
           vm.rowCollection = []; // for storing original data from database
           vm.displayedCollection=[]; // only for visible rows (like searching, sorting)
           var apiURL = $rootScope.serverUrl;
-
-          vm.cbluser = angular.copy($local.cbluser);
+          vm.cbluser = {};
+          if($local.cbluser)
+          {
+              vm.cbluser = angular.copy($local.cbluser);
+          }
 
           vm.getData=function(){
             $http.get(apiURL + '/getProfile/' + vm.cbluser.PK)

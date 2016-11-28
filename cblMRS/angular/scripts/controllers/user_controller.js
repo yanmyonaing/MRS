@@ -6,9 +6,9 @@
         .module('app')
         .controller('UserController', UserController);
 
-        UserController.$inject =  ['$scope', '$timeout','$http', '$state', '$rootScope', '$cacheFactory', '$localStorage'];
+        UserController.$inject =  ['$scope', '$timeout', '$auth', '$http', '$state', '$rootScope', '$cacheFactory', '$localStorage'];
 
-        function UserController($scope, $timeout,$http,$state,$rootScope,$cache,$localStorage) {
+        function UserController($scope, $timeout, $auth, $http,$state,$rootScope,$cache,$localStorage) {
           var vm = $scope;
           vm.cbluser='';
           vm.success = '';
@@ -17,38 +17,80 @@
           vm.displayedCollection=[]; // only for visible rows (like searching, sorting)
           vm.changePasswordValue = '';
           vm.changeLoginValue = '';
+          vm.isValid = localStorage.getItem('isValid');
+          vm.errorMessage = true;
+
           var apiURL = $rootScope.serverUrl + '/signup';
-            var changePasswordURL = $rootScope.serverUrl + '/changePassword';
-            var changeLoginURL = $rootScope.serverUrl + '/changeLogin';
-
-
+          var changePasswordURL = $rootScope.serverUrl + '/changePassword';
+          var changeLoginURL = $rootScope.serverUrl + '/changeLogin';
 
             vm.Validate=function(){
-            $http.post(apiURL,vm.cbluser)
-                    .success(function(response)
-                    {
-                      if(response.length >0)
-                      {
-                          vm.cbluser=response[0];
-                          if( $localStorage.cbluser == undefined){
-                            $localStorage.cbluser = vm.cbluser;
-                          }
+                var credentials = {
+                    user_id : vm.cbluser.user_id,
+                    password : vm.cbluser.password
+                };
 
-                          // vm.cache= $cache.get('emr');
-                          // vm.cache.put('user', vm.user);
-                         //$rootScope.userPK=vm.user.PK;
-                          $localStorage.currentUser=vm.cbluser.PK;
+                $auth.login(credentials).then(function(data) {
+                    // If login is successful, redirect to the users state
+                    delete localStorage.isValid;
 
-                          vm.isValid=true;
-                          // location.href="#/app/page/profile";
-                          $state.go('app.page.summary');
+                    return $http.get($rootScope.serverUrl+'/loginUser');
 
-                      }
-                       else
-                       {
-                          vm.isValid=false;                        
-                       }
-                    });
+                }, function(error) {
+                    vm.loginError = true;
+                    vm.loginErrorText = error.error;
+
+                    localStorage.setItem('isValid', true);
+                    vm.errorMessage = false;
+                    
+                }).then(function(response){
+
+                    var user = JSON.stringify(response);
+
+                    localStorage.setItem('user', user);
+
+                    $rootScope.authenticated = true;
+
+                    if( $localStorage.cbluser == undefined){
+
+                        $localStorage.cbluser = response.data.user;
+                    }
+
+                    $localStorage.currentUser=response.data.user.PK;
+
+                    vm.isValid=true;
+
+                    $state.go('app.page.summary');
+
+                    // $rootScope.currentUser = response.data.user; To show user name
+
+
+                });
+            // $http.post(apiURL,vm.cbluser)
+            //         .success(function(response)
+            //         {
+            //           if(response.length >0)
+            //           {
+            //               vm.cbluser=response[0];
+            //               if( $localStorage.cbluser == undefined){
+            //                 $localStorage.cbluser = vm.cbluser;
+            //               }
+            //
+            //               // vm.cache= $cache.get('emr');
+            //               // vm.cache.put('user', vm.user);
+            //              //$rootScope.userPK=vm.user.PK;
+            //               $localStorage.currentUser=vm.cbluser.PK;
+            //
+            //               vm.isValid=true;
+            //               // location.href="#/app/page/profile";
+            //               $state.go('app.page.summary');
+            //
+            //           }
+            //            else
+            //            {
+            //               vm.isValid=false;
+            //            }
+            //         });
           }
 
             vm.changePassword=function(){
@@ -80,3 +122,5 @@
 
             }
 })();
+
+

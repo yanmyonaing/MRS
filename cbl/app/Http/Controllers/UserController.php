@@ -11,6 +11,9 @@ use App\Models\Result;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
 
 //use JWTAuth;
 
@@ -29,10 +32,56 @@ class UserController extends Controller
     //	return response()->json($users);
     //}
 
+    public function login(Request $req){
+
+        $credentials = $req->only('user_id', 'password');
+
+        $credentials['login'] = $credentials['user_id'];
+
+        unset($credentials['user_id']);
+
+        try {
+            // verify the credentials and create a token for the user
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        return response()->json(compact('token'));
+    }
+
+    public function loginUser()
+    {
+        try {
+
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        return response()->json(compact('user'));
+    }
+
     public function checkvalid(Request $req)
     {
 
-        $user = Users::select('PK','name','login')->where('login',$req->input('user_id'))->where('passw', MD5($req->input('password')))->get();
+        $user = Users::select('PK','name','login')->where('login',$req->input('user_id'))->where('passw', bcrypt($req->input('password')))->get();
         if (count($user) > 0){
             Session::put('cur_user',$user[0]->PK);
             return response()->json($user);
@@ -66,7 +115,7 @@ class UserController extends Controller
     public function changePassword(Request $req)
     {
             $user = Users::find($req->input('PK'));
-            $user->passw=MD5($req->input('password'));
+            $user->passw = bcrypt($req->input('password'));
             $user->save();
             $user = Users::where('PK',$req->input('PK'))->get();
             return response()->json($user);

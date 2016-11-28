@@ -31,9 +31,13 @@ Route::get('/logout', 'UserController@logout');
 
 Route::get('/getProfile/{id}', 'UserController@getProfile');
 
+Route::group(['middleware' =>'jwt.auth'],function(){
+Route::get('/loginUser', 'UserController@loginUser');
+
 Route::get('/patients', 'PatientController@index');
 
 Route::get('/patient/{id}', 'PatientController@details');
+
 Route::get('/summary/{id}', 'SummaryController@details');
 
 Route::get('/patientData/{userId}', 'UserController@getPatient');
@@ -56,9 +60,14 @@ Route::post('/changePassword', 'UserController@changePassword');
 Route::post('/changeLogin', 'UserController@changeLoginID');
 
 Route::get('/home', function () {
-    
+
 //Session::put('cur_user', 10);
 //return Session::get('cur_user');
     $test = 'test';
-        return $test;
+    return $test;
 });
+});
+
+
+
+Route::post('/login','UserController@login');
