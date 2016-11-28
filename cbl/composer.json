@@ -22,7 +22,9 @@
         ],
         "psr-4": {
             "Illuminate\\": "src/Illuminate/",
-            "App\\": "app/"
+            "App\\": "app/",
+            "Md5Hasher\\": "app/Md5Hasher/"
+
 
         }
     },

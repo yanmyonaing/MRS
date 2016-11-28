@@ -38,6 +38,9 @@ class UserController extends Controller
 
         $credentials['login'] = $credentials['user_id'];
 
+//        5f4dcc3b5aa765d61d8327deb882cf99
+//        $2y$10$zhZ/6DsqB4vXE5Y9.dkbHeQdbcfpd.Dtb1HB5Iee24g.PCl9dP3RC
+
         unset($credentials['user_id']);
 
         try {
@@ -81,7 +84,7 @@ class UserController extends Controller
     public function checkvalid(Request $req)
     {
 
-        $user = Users::select('PK','name','login')->where('login',$req->input('user_id'))->where('passw', bcrypt($req->input('password')))->get();
+        $user = Users::select('PK','name','login')->where('login',$req->input('user_id'))->where('passw', md5($req->input('password')))->get();
         if (count($user) > 0){
             Session::put('cur_user',$user[0]->PK);
             return response()->json($user);
@@ -115,7 +118,7 @@ class UserController extends Controller
     public function changePassword(Request $req)
     {
             $user = Users::find($req->input('PK'));
-            $user->passw = bcrypt($req->input('password'));
+            $user->passw = md5($req->input('password'));
             $user->save();
             $user = Users::where('PK',$req->input('PK'))->get();
             return response()->json($user);
